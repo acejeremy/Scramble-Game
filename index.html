@@ -3,157 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Scramble Game</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        
-        .game-container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 80%;
-            max-width: 500px;
-        }
-        
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 2rem;
-        }
-        
-        .scrambled-word {
-            font-size: 2rem;
-            letter-spacing: 0.5rem;
-            margin: 1.5rem 0;
-            color: #e74c3c;
-            font-weight: bold;
-        }
-        
-        input {
-            padding: 0.8rem;
-            width: 80%;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        button:hover {
-            background-color: #2980b9;
-        }
-        
-        .feedback {
-            margin-top: 1.5rem;
-            font-size: 1.2rem;
-            min-height: 2rem;
-        }
-        
-        .correct {
-            color: #27ae60;
-        }
-        
-        .incorrect {
-            color: #e74c3c;
-        }
-    </style>
+    <title>About Me | Software Developer</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="game-container">
-        <h1>Word Scramble Game</h1>
-        <p>Unscramble this word:</p>
-        <div class="scrambled-word" id="scrambledWord"></div>
-        <input type="text" id="userGuess" placeholder="Your guess...">
-        <button id="checkButton">Check Answer</button>
-        <div class="feedback" id="feedback"></div>
-    </div>
-
-    <script>
-        // Word bank
-        const words = ['javascript', 'developer', 'programming', 'function', 'variable'];
-        
-        // Game variables
-        let currentWord = '';
-        let scrambledWord = '';
-        
-        // DOM elements
-        const scrambledWordElement = document.getElementById('scrambledWord');
-        const userGuessInput = document.getElementById('userGuess');
-        const checkButton = document.getElementById('checkButton');
-        const feedbackElement = document.getElementById('feedback');
-        
-        // Initialize the game
-        initGame();
-        
-        // Event listeners
-        checkButton.addEventListener('click', checkAnswer);
-        
-        // Functions
-        function initGame() {
-            // Select a random word
-            currentWord = words[Math.floor(Math.random() * words.length)];
+    <header>
+        <div class="container">
+            <img src="https://via.placeholder.com/150" alt="Profile Image" class="profile-img">
+            <h1>John Doe</h1>
+            <p>Full Stack JavaScript Developer</p>
+        </div>
+    </header>
+    
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>Hello! I'm a passionate software developer with 5 years of experience building web applications. I specialize in JavaScript technologies including React, Node.js, and Express. I love solving complex problems and creating intuitive, user-friendly interfaces.</p>
+            <p>When I'm not coding, you can find me hiking, reading science fiction, or playing guitar.</p>
+        </div>
+    </section>
+    
+    <section id="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills">
+                <span class="skill">JavaScript</span>
+                <span class="skill">React</span>
+                <span class="skill">Node.js</span>
+                <span class="skill">Express</span>
+                <span class="skill">MongoDB</span>
+                <span class="skill">HTML5</span>
+                <span class="skill">CSS3</span>
+                <span class="skill">Git</span>
+                <span class="skill">REST APIs</span>
+                <span class="skill">TypeScript</span>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects">
+                <div class="project">
+                    <img src="https://via.placeholder.com/400x200" alt="Project 1">
+                    <div class="project-info">
+                        <h3>E-commerce Platform</h3>
+                        <p>A full-stack e-commerce application with React frontend and Node.js backend.</p>
+                    </div>
+                </div>
+                <div class="project">
+                    <img src="https://via.placeholder.com/400x200" alt="Project 2">
+                    <div class="project-info">
+                        <h3>Task Management App</h3>
+                        <p>A productivity application for managing tasks with drag-and-drop functionality.</p>
+                    </div>
+                </div>
+                <div class="project">
+                    <img src="https://via.placeholder.com/400x200" alt="Project 3">
+                    <div class="project-info">
+                        <h3>Weather Dashboard</h3>
+                        <p>Real-time weather information with 5-day forecast using weather API.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <a href="mailto:john.doe@example.com">john.doe@example.com</a>
+                <a href="tel:+1234567890">(123) 456-7890</a>
+                <div class="social-links">
+                    <a href="#" target="_blank">LinkedIn</a> | 
+                    <a href="#" target="_blank">GitHub</a> | 
+                    <a href="#" target="_blank">Twitter</a>
+                </div>
+            </div>
             
-            // Scramble the word
-            scrambledWord = scrambleWord(currentWord);
-            
-            // Display scrambled word
-            scrambledWordElement.textContent = scrambledWord;
-            
-            // Clear previous feedback and input
-            feedbackElement.textContent = '';
-            feedbackElement.className = 'feedback';
-            userGuessInput.value = '';
-        }
-        
-        function scrambleWord(word) {
-            // Convert word to array
-            let letters = word.split('');
-            
-            // Fisher-Yates shuffle algorithm
-            for (let i = letters.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [letters[i], letters[j]] = [letters[j], letters[i]];
-            }
-            
-            // Return as string
-            return letters.join('');
-        }
-        
-        function checkAnswer() {
-            const userGuess = userGuessInput.value.trim().toLowerCase();
-            
-            if (userGuess === currentWord) {
-                feedbackElement.textContent = 'Correct! Well done!';
-                feedbackElement.className = 'feedback correct';
-                
-                // Start a new game after a delay
-                setTimeout(initGame, 2000);
-            } else {
-                feedbackElement.textContent = 'Try again!';
-                feedbackElement.className = 'feedback incorrect';
-            }
-        }
-    </script>
+            <!-- Feedback Form -->
+            <div class="feedback-form">
+                <h2>Feedback</h2>
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name">
+                        <div class="error" id="nameError">Please enter your name</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your email">
+                        <div class="error" id="emailError">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Your feedback"></textarea>
+                        <div class="error" id="messageError">Please enter your feedback message</div>
+                    </div>
+                    
+                    <button type="submit">Submit Feedback</button>
+                    <div class="success-message" id="successMessage">Thank you for your feedback!</div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 John Doe. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
 </body>
 </html>
