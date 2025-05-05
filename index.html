@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Scramble Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .game-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+        
+        .scrambled-word {
+            font-size: 2rem;
+            letter-spacing: 0.5rem;
+            margin: 1.5rem 0;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        input {
+            padding: 0.8rem;
+            width: 80%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .feedback {
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            min-height: 2rem;
+        }
+        
+        .correct {
+            color: #27ae60;
+        }
+        
+        .incorrect {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Word Scramble Game</h1>
+        <p>Unscramble this word:</p>
+        <div class="scrambled-word" id="scrambledWord"></div>
+        <input type="text" id="userGuess" placeholder="Your guess...">
+        <button id="checkButton">Check Answer</button>
+        <div class="feedback" id="feedback"></div>
+    </div>
+
+    <script>
+        // Word bank
+        const words = ['javascript', 'developer', 'programming', 'function', 'variable'];
+        
+        // Game variables
+        let currentWord = '';
+        let scrambledWord = '';
+        
+        // DOM elements
+        const scrambledWordElement = document.getElementById('scrambledWord');
+        const userGuessInput = document.getElementById('userGuess');
+        const checkButton = document.getElementById('checkButton');
+        const feedbackElement = document.getElementById('feedback');
+        
+        // Initialize the game
+        initGame();
+        
+        // Event listeners
+        checkButton.addEventListener('click', checkAnswer);
+        
+        // Functions
+        function initGame() {
+            // Select a random word
+            currentWord = words[Math.floor(Math.random() * words.length)];
+            
+            // Scramble the word
+            scrambledWord = scrambleWord(currentWord);
+            
+            // Display scrambled word
+            scrambledWordElement.textContent = scrambledWord;
+            
+            // Clear previous feedback and input
+            feedbackElement.textContent = '';
+            feedbackElement.className = 'feedback';
+            userGuessInput.value = '';
+        }
+        
+        function scrambleWord(word) {
+            // Convert word to array
+            let letters = word.split('');
+            
+            // Fisher-Yates shuffle algorithm
+            for (let i = letters.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [letters[i], letters[j]] = [letters[j], letters[i]];
+            }
+            
+            // Return as string
+            return letters.join('');
+        }
+        
+        function checkAnswer() {
+            const userGuess = userGuessInput.value.trim().toLowerCase();
+            
+            if (userGuess === currentWord) {
+                feedbackElement.textContent = 'Correct! Well done!';
+                feedbackElement.className = 'feedback correct';
+                
+                // Start a new game after a delay
+                setTimeout(initGame, 2000);
+            } else {
+                feedbackElement.textContent = 'Try again!';
+                feedbackElement.className = 'feedback incorrect';
+            }
+        }
+    </script>
+</body>
+</html>
